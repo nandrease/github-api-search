@@ -79,5 +79,9 @@ export default {
   display: inline-block;
   vertical-align: top;
   text-align: left;
+
+  .md-title {
+    word-break: break-all;
+  }
 }
 </style>
