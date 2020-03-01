@@ -1,8 +1,9 @@
 <template>
-  <div id="nav">
-      <router-link to="/">Search</router-link> |
-      <router-link to="/bookmarks">Bookmarks</router-link>
-    </div>
+  <md-toolbar md-dense>
+      <router-link to="/" class="md-title">Search</router-link>
+      <span class="md-title"> | </span>
+      <router-link to="/bookmarks" class="md-title">Bookmarks</router-link>
+  </md-toolbar>
 </template>
 
 <script>
@@ -12,16 +13,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#nav {
-  padding: 30px;
+.md-toolbar {
+  justify-content: center;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+    a {
+      font-weight: bold;
+      color: #2c3e50;
 
-    &.router-link-exact-active {
-      color: #42b983;
+      &.router-link-exact-active {
+        color: #42b983;
+      }
     }
-  }
 }
 </style>
