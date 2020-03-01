@@ -1,6 +1,6 @@
 <template>
   <div class="bookmarks-page">
-    <h1>This is an bookmarks page</h1>
+    <h1>Saved bookmarks</h1>
     <template v-if="!bookmarks.length">
       <p>No bookmarks are selected.</p>
       <p>Please <router-link to="/">add bookmarks to your selection</router-link> first.</p>
@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import sampleData from '@/assets/sampleData.json'
 import CardComp from '@/components/CardComp.vue'
 
 export default {
@@ -23,14 +22,14 @@ export default {
   components: {
     CardComp
   },
-  data () {
-    return {
-      bookmarks: sampleData || []
+  computed: {
+    bookmarks () {
+      return this.$store.state.bookmarks
     }
   },
   methods: {
     removeFromBookmarks (bookmarkId) {
-      this.bookmarks = this.bookmarks.filter(item => item.id !== bookmarkId)
+      this.$store.dispatch('removeBookmarkItem', bookmarkId)
     }
   }
 }
