@@ -2,15 +2,17 @@
   <md-snackbar
     v-if="active"
     :md-position="position"
-    :md-duration="duration"
+    :md-duration="toastDuration"
     :md-active="active"
   >
-    <span>{{ message }}</span>
-    <md-button v-show="showButton" class="md-primary" @click.once="undoChange">Undo</md-button>
+    <span>{{ toastMessage }}</span>
+    <md-button v-show="toastButton" class="md-primary" @click.once="undoChange">Undo</md-button>
   </md-snackbar>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   name: 'ToastNotification',
   data: () => ({
@@ -18,23 +20,19 @@ export default {
     isInfinity: false
   }),
   computed: {
-    message () {
-      return this.$store.getters.toastMessage
-    },
+    ...mapGetters([
+      'toastMessage',
+      'toastDuration',
+      'toastButton'
+    ]),
     active () {
-      return !!this.message
-    },
-    duration () {
-      return this.$store.getters.toastDuration
-    },
-    showButton () {
-      return this.$store.getters.toastButton
+      return !!this.toastMessage
     }
   },
   methods: {
-    undoChange () {
-      return this.$store.dispatch('undoLastBookmarkAction')
-    }
+    ...mapActions({
+      undoChange: 'undoLastBookmarkAction'
+    })
   }
 }
 </script>

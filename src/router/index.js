@@ -11,7 +11,7 @@ const routes = [
     component: Search
   },
   {
-    path: '/Bookmarks',
+    path: '/bookmarks',
     name: 'Bookmarks',
     // route level code-splitting
     // this generates a separate chunk (bookmarks.[hash].js) for this route

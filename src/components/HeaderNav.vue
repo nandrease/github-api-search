@@ -8,12 +8,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'HeaderNav',
   computed: {
-    bookmarksCount () {
-      return this.$store.getters.bookmarksCount
-    }
+    ...mapGetters(['bookmarksCount'])
   }
 }
 </script>
@@ -33,7 +33,6 @@ export default {
 
   a {
     font-weight: bold;
-    color: #2c3e50;
 
     &.router-link-exact-active {
       color: #42b983;

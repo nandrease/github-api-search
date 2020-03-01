@@ -33,13 +33,13 @@
         Visit Github page
       </md-button>
       <md-button v-if="isActiveBookmark"
-       @click="removeFromBookmarks"
+       @click="() => removeBookmarkItem(item.id)"
       >
         <md-icon>star</md-icon>
         Remove Bookmark
       </md-button>
       <md-button v-else
-        @click="addToBookmarks"
+        @click="() => addBookmarkItem(item)"
       >
         <md-icon>star_border</md-icon>
         Add Bookmark
@@ -49,6 +49,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'CardComp',
   props: {
@@ -62,12 +64,10 @@ export default {
     }
   },
   methods: {
-    addToBookmarks () {
-      this.$store.dispatch('addBookmarkItem', this.item)
-    },
-    removeFromBookmarks () {
-      this.$store.dispatch('removeBookmarkItem', this.item.id)
-    }
+    ...mapActions([
+      'addBookmarkItem',
+      'removeBookmarkItem'
+    ])
   }
 }
 </script>
