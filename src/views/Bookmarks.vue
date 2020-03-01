@@ -1,15 +1,17 @@
 <template>
   <div class="bookmarks-page">
     <h1>Saved bookmarks</h1>
-    <template v-if="!bookmarks.length">
-      <p>No bookmarks are selected.</p>
-      <p>Please <router-link to="/">add bookmarks to your selection</router-link> first.</p>
-    </template>
+    <md-empty-state
+      v-if="!bookmarks.length"
+      md-icon="devices_other"
+      md-label="No bookmarks are selected"
+      md-description="Please add bookmarks to your selection first.">
+      <router-link to="/"><md-button class="md-primary md-raised">Search GitHub</md-button></router-link>
+    </md-empty-state>
     <card-comp
       v-for="item in bookmarks"
       :key="item.id"
       :item="item"
-      @remove-bookmark-item="removeFromBookmarks"
     ></card-comp>
   </div>
 </template>
@@ -25,11 +27,6 @@ export default {
   computed: {
     bookmarks () {
       return this.$store.state.bookmarks
-    }
-  },
-  methods: {
-    removeFromBookmarks (bookmarkId) {
-      this.$store.dispatch('removeBookmarkItem', bookmarkId)
     }
   }
 }

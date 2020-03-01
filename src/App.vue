@@ -2,15 +2,18 @@
   <div id="app">
     <HeaderNav />
     <router-view/>
+    <ToastNotification />
   </div>
 </template>
 
 <script>
 import HeaderNav from '@/components/HeaderNav.vue'
+import ToastNotification from '@/components/ToastNotification.vue'
 
 export default {
   components: {
-    HeaderNav
+    HeaderNav,
+    ToastNotification
   }
 }
 </script>

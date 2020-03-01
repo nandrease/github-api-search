@@ -1,6 +1,6 @@
 <template>
   <div class="search-page">
-    <h1>Use search bar to search for GitHub repositories</h1>
+    <h1>Search for GitHub repositories</h1>
     <md-content class="flex-center">
       <form @submit.prevent="fetchData" class="form-inline">
         <md-field md-inline md-clearable>
@@ -11,13 +11,14 @@
         <md-button type="submit">Search</md-button>
       </form>
     </md-content>
-    <p v-if="loading"><md-progress-spinner md-mode="indeterminate"></md-progress-spinner></p>
+    <template v-if="loading">
+      <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
+    </template>
     <template v-else>
       <card-comp
         v-for="item in results"
         :key="item.id"
         :item="item"
-        @add-bookmark-item="addToBookmarks"
       ></card-comp>
     </template>
   </div>
@@ -54,9 +55,6 @@ export default {
       } else {
         this.results = []
       }
-    },
-    addToBookmarks (bookmark) {
-      this.$store.dispatch('addBookmarkItem', bookmark)
     }
   }
 }

@@ -16,21 +16,33 @@
 
       <md-card-media>
         <md-avatar class="md-large">
-          <img :src="item.owner.avatar_url" :alt="item.name" />
+          <img
+            :src="item.owner.avatar_url"
+            :alt="item.name"
+          />
         </md-avatar>
       </md-card-media>
     </md-card-header>
 
     <md-card-actions>
-      <!-- <md-button :href="item.html_url" :title="'GitHub repo ' + item.full_name"
-            target="_blank">
-            Visit Github page
-      </md-button>-->
-      <md-button @click="() => addToBookmarks(item)">
-        <md-icon>star</md-icon>Add Bookmark
+      <md-button
+        :href="item.html_url"
+        :title="'GitHub repo ' + item.full_name"
+        target="_blank"
+      >
+        Visit Github page
       </md-button>
-      <md-button @click.prevent="removeFromBookmarks">
-        <md-icon>star_border</md-icon>Remove Bookmark
+      <md-button v-if="isActiveBookmark"
+       @click="removeFromBookmarks"
+      >
+        <md-icon>star</md-icon>
+        Remove Bookmark
+      </md-button>
+      <md-button v-else
+        @click="addToBookmarks"
+      >
+        <md-icon>star_border</md-icon>
+        Add Bookmark
       </md-button>
     </md-card-actions>
   </md-card>
@@ -44,12 +56,17 @@ export default {
       type: Object
     }
   },
+  computed: {
+    isActiveBookmark () {
+      return this.$store.state.bookmarks.filter(bookmark => this.item.id === bookmark.id).length > 0
+    }
+  },
   methods: {
-    addToBookmarks (bookmark) {
-      this.$emit('add-bookmark-item', this.item)
+    addToBookmarks () {
+      this.$store.dispatch('addBookmarkItem', this.item)
     },
     removeFromBookmarks () {
-      this.$emit('remove-bookmark-item', this.item.id)
+      this.$store.dispatch('removeBookmarkItem', this.item.id)
     }
   }
 }
