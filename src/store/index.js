@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
+import myPluginWithSnapshot from './plugins/myPluginWithSnapshot'
 import {
   ADD_BOOKMARK_ITEM,
   REMOVE_BOOKMARK_ITEM,
@@ -8,7 +10,6 @@ import {
   UNDO_BOOKMARK_CHANGE,
   UPDATE_BOOKMARKS
 } from './mutation-types'
-import myPluginWithSnapshot from './plugins/myPluginWithSnapshot'
 
 Vue.use(Vuex)
 
@@ -16,7 +17,12 @@ let timeout = null
 
 export default new Vuex.Store({
   strict: true,
-  plugins: [myPluginWithSnapshot],
+  plugins: [
+    myPluginWithSnapshot,
+    createPersistedState({
+      storage: window.sessionStorage
+    })
+  ],
   state: {
     bookmarks: [],
     message: '',
