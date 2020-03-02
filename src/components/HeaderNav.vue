@@ -32,10 +32,10 @@ export default {
   }
 
   a {
-    font-weight: bold;
+    font-weight: 500;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: #0469b5;
     }
   }
 }

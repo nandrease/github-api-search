@@ -1,14 +1,14 @@
 <template>
   <div class="search-page">
-    <h1>Search for GitHub repositories</h1>
+    <h1 class="main-title">Search for GitHub repositories</h1>
     <md-content class="flex-center">
       <form @submit.prevent="fetchData" class="form-inline">
         <md-field md-inline md-clearable>
           <md-icon>search</md-icon>
           <label>Search Github Repos</label>
-          <md-input v-model="searchStr" type="text"></md-input>
+          <md-input v-model="searchStr" type="text" class="md-accent"></md-input>
         </md-field>
-        <md-button type="submit">Search</md-button>
+        <md-button type="submit" class="md-raised md-accent">Search</md-button>
       </form>
     </md-content>
     <template v-if="loading">

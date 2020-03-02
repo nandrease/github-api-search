@@ -26,7 +26,7 @@ export default new Vuex.Store({
   state: {
     bookmarks: [],
     message: '',
-    duration: 4000,
+    duration: 40000,
     showActionButton: true
   },
   getters: {

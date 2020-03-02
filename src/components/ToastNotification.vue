@@ -6,7 +6,7 @@
     :md-active="active"
   >
     <span>{{ toastMessage }}</span>
-    <md-button v-show="toastButton" class="md-primary" @click.once="undoChange">Undo</md-button>
+    <md-button v-show="toastButton" class="md-button md-primary md-raised md-theme-default" @click.once="undoChange">Undo</md-button>
   </md-snackbar>
 </template>
 
@@ -16,8 +16,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'ToastNotification',
   data: () => ({
-    position: 'center',
-    isInfinity: false
+    position: 'center'
   }),
   computed: {
     ...mapGetters([
@@ -37,5 +36,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
+.md-button .md-button-content {
+  color: #fefefe;
+}
 </style>

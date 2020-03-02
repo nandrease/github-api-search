@@ -35,7 +35,7 @@
       <md-button v-if="isActiveBookmark"
        @click="() => removeBookmarkItem(item.id)"
       >
-        <md-icon>star</md-icon>
+        <md-icon class="md-primary">star</md-icon>
         Remove Bookmark
       </md-button>
       <md-button v-else
